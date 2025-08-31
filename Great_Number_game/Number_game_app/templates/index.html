@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <p>I am thinking a number between 1 and 100</p>
+    <h2>Take a guess!</h2>
+    {% if guess %}
+    {% if number > guess %}
+    <div class="red">
+        <p>Too low!</p>
+    </div>
+    {% elif guess > number %}
+    <div class="red">
+        <p>Too high!</p>
+    </div>
+    {% else %}
+    <div class="green">
+        <p>{{guess}} was the number!</p>
+
+        <form action="{% url 'play_again' %}" method="post">
+            {% csrf_token %}
+            <button>Play Again</button>
+        </form>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% if guess != number %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="number"></label>
+        <input type="text" name="number" id="number">
+        <button>sumbit</button>
+    </form>
+    {% endif %}
+</body>
+
+</html>
