@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold Game</title>
+    <link rel="stylesheet" href="{% static 'Ninja_gold_app/style.css' %}">
+</head>
+<body>
+    <label for="name">Your Gold : <span>{{gold}}</span> </label> 
+    <div class="cards">
+         <div class="farm row">
+            <h1>Farm</h1>
+            <p>(earns 10-20 golds)</p>
+            <form action="{% url 'process_money' %}" method="post">
+                 {% csrf_token %}
+                <input type="hidden" name="place" value="farm">
+                <button>Find Gold!</button>
+            </form>
+        </div>
+        <div class="cave row">
+            <h1>Cave</h1>
+            <p>(earns 10-20 golds)</p>
+            <form action="{% url 'process_money' %}" method="post">
+                 {% csrf_token %}
+                <input type="hidden" name="place" value="cave">
+                <button>Find Gold!</button>
+            </form>
+        </div>
+        <div class="house row">
+            <h1>House</h1>
+            <p>(earns 10-20 golds)</p>
+            <form action="{% url 'process_money' %}" method="post">
+                 {% csrf_token %}
+                <input type="hidden" name="place" value="house">
+                <button>Find Gold!</button>
+            </form>
+        </div>
+        <div class="quest row">
+            <h1>Quest</h1>
+            <p>(earns/takes 0-50 golds)</p>
+            <form action="{% url 'process_money' %}" method="post">
+                 {% csrf_token %}
+                <input type="hidden" name="place" value="quest">
+                <button>Find Gold!</button>
+            </form>
+        </div>
+    </div>
+    <h1>Activities:</h1>
+    <div class="act">
+        {%for activity in act%}
+        {% if 'earned' in activity %}
+            <p style="color: green;" >{{activity}}</p>
+        {% else %}
+        <p style="color: red;" >{{activity}}</p>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <form action="/reset">
+        <button class="reset">Reset Game</button>
+    </form>
+</body>
+</html>

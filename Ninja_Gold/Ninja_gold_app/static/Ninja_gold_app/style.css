@@ -1,0 +1,41 @@
+body{
+    margin:60px 0;
+    padding: 0;
+    margin-left: 20px;
+
+}
+.cards{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 50px;
+    margin-right: 20px;
+}
+.row{
+    border: 1px solid black;
+    width: 200px;
+    height: 180px;
+    background-color: gold;
+}
+label{
+    font-size: 35px;
+}
+span{
+    border: 1px solid black;
+    padding: 0 40px 0 40px;
+}
+
+button{
+    box-shadow: 4px 4px 4px black;
+    width: 120px;
+    margin-top: 20px;
+    height: 30px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: rgb(206, 179, 179);
+    color: black;
+}
+.act{
+    border: 1px solid black;
+}
