@@ -1,0 +1,23 @@
+body{
+    text-align: center;
+}
+.forms-section{
+    display: flex;
+    justify-content: space-around;
+    margin:60px ;
+    padding: 12px;
+    border-bottom: 2px solid black;
+}
+button{
+    margin-top: 20px;
+    display: inline-block;
+}
+.row{
+    width: 210px;
+    height: 35px;
+    margin-left: 5px;
+    margin-top: 20px;
+}
+input{
+    margin-top: 20px;
+}
