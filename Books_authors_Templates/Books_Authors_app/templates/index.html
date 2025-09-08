@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books & Authors</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <body class="bg-gold" style="display: flex; justify-content: space-between;">
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow p-4">
+                        <h3 class="mb-4 text-center">Add a Book</h3>
+                        <form action="{% url 'add_book' %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="4"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Submit</button>
+                            <button style="margin-top: 20px;"  type="button" class="btn btn-warning w-100"><a href="{% url 'authors' %}">Go to Authors page</a></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-dark" style="width: 600px; margin: 60px 60px 0 0 ;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in Book%}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td><a href="{% url 'display_book' book.id %}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+
+</html>

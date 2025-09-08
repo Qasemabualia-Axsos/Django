@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books & Authors</title>
+</head>
+<body>
+    <div>
+    <h1>{{book.title}}</h1>
+    <h1>ID:{{book.id}}</h1>
+    <p>Description:{{book.description}}</p>
+    </div>
+    <div>
+        <h1>Authors:</h1>
+        <ul>
+            {% for auth in book.authors.all %}
+            <li>{{auth.first_name}} {{auth.last_name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <form action="{% url 'display_book' book.id %}" method="post">
+        {% csrf_token %}
+            <select name="author_ids" class="form-select" aria-label="Default select example">
+            <option value="" disabled selected>Select author</option>
+        {% for auth in Author %}
+  <option value="{{auth.id}}">{{auth.first_name}} {{auth.last_name}}</option>
+  {% endfor %}
+</select>
+<button>Add</button>
+</form>
+</body>
+</html>
