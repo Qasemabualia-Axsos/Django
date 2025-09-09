@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{% static 'login_registration_app/style.css' %}">
+
+</head>
+<body>
+    <div class="main">
+        <div class="left">
+            <h1>Success! Welcome, {{user.first_name}}!</h1>
+            {% for message in messages %}
+            <p style="color: green; font-size: 30px;">{{message}}</p>
+            {% endfor %}
+        </div>
+        <div class="logout">
+            <a href="{% url 'delete' %}">Log Out</a>
+        </div>
+    </div>
+</body>
+</html>
