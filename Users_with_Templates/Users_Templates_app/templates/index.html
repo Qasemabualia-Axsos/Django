@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C+R Users</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    form{
+        margin: auto;
+        width: 520px;
+        height: 150px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 30px;
+        
+    }
+    input{
+        height: 30px;
+    }
+    button{
+        position: relative;
+        width: 120px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        box-shadow: 4px 4px 4px black;
+    }
+    .bottom{
+        border-top: 1px solid black;
+        width: 80%;
+        margin:50px auto;
+    }
+</style>
+
+<body>
+    <h1>All the Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </tr>
+        {% for user in Users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.Name}}</td>
+            <td>{{user.Email}}</td>
+            <td>{{user.Age}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="bottom">
+        <h1>Add a User</h1>
+        <form action="{% url 'add_user' %}" method="post">
+            {% csrf_token %}
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name">
+
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name">
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age">
+            <button>Add</button>
+        </form>
+    </div>
+</body>
+</html>
