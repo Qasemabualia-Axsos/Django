@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="stylesheet" href="{% static 'Counter/style.css' %}">
+</head>
+<body>
+    <div>
+    <h1>Counter</h1>
+    <h2>{{count}} times</h2>
+    <a href="/destroy_session">
+        <button>Destroy_session</button>
+    </a>
+    <a href="/increment_by_2">
+        <button>+2</button>
+    </a>
+    <form action="{% url 'incremet_by_user' %}" method="post">
+        {% csrf_token %}
+        <label for="num"></label>
+        <input type="text" name="num" id="num">
+        <button>add number</button>
+    </form>
+    </div>
+</body>
+</html>
