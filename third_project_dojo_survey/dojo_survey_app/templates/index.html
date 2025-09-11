@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dojo Survey Index</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body">
+            <h4 class="card-title mb-4 text-center">Dojo Survey</h4>
+
+            <form action="{% url 'result' %}" method="post">
+                {% csrf_token %}
+              <!-- Your Name -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Your Name:</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your name">
+              </div>
+
+              <!-- Dojo Location -->
+              <div class="mb-3">
+                <label for="location" class="form-label">Dojo Location:</label>
+                <select class="form-select" id="location" name="dojo_location">
+                  <option selected disabled>Choose...</option>
+                  <option>San Jose</option>
+                  <option>Seattle</option>
+                  <option>Chicago</option>
+                  <option>New York</option>
+                </select>
+              </div>
+
+              <!-- Favorite Language -->
+              <div class="mb-3">
+                <label for="language" class="form-label">Favorite Language:</label>
+                <select class="form-select" id="favorite_language" name="favorite_language">
+                  <option selected disabled>Choose...</option>
+                  <option>Python</option>
+                  <option>JavaScript</option>
+                  <option>Java</option>
+                  <option>C#</option>
+                </select>
+              </div>
+
+              <!-- Comment -->
+              <div class="mb-3">
+                <label for="comment" class="form-label">Comment (optional):</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
