@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <link rel="stylesheet" href="{% static 'the_wall_app/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav style="color: white; font-size: 30px;" class="navbar navbar-light bg-primary justify-content-between">
+        <a class="navbar-brand">CodingDojo Wall </a>
+        <h2 ><a style="color: white; font-size: 30px;" href="{% url 'wall' %}">Go to Wall page</a></h2>
+        <h2>Welcome {{user.first_name}}!</h2>
+        <a style="color: white; font-size: 30px;" href="{% url 'logout' %}">log off</a>
+        
+    </nav>
+    <div class="main">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-lg rounded-3">
+                        <div class="card-header text-center bg-primary text-white">
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="{% url 'post_msg' %}" method="POST">
+                                {% csrf_token %}
+
+                                <!-- First Name -->
+                                <div class="mb-3">
+                                    <h4>Post a message</h4>
+                                    <textarea style="width: 500px" ; class="form-msg" name="content"
+                                        id="content"></textarea>
+                                </div>
+
+                                <!-- Submit -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Post a message</button> 
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 50%; margin:20px auto;" class="contet">
+        {% for msg in Messages %}
+        <h1>{{msg.user.first_name}} {{msg.user.last_name}}-{{msg.created_at}}</h1>
+        <p style="font-size: 30px; color: red;">{{msg.content}}</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
